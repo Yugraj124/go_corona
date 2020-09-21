@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mover : MonoBehaviour
+public class Mover : MonoBehaviour
 {
     public float speed = 10f;
     float x, y;

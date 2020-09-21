@@ -21,6 +21,6 @@ public class MouseLooker : MonoBehaviour
         pos = Camera.main.WorldToScreenPoint(transform.position);
         float angle = Mathf.Atan2((y-pos.y), (x-pos.x)) * Mathf.Rad2Deg;
 
-        transform.eulerAngles =new Vector3(0,0,angle);
+        transform.eulerAngles = new Vector3(0, 0, angle);
     }
 }
