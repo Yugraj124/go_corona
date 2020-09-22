@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4602774571528803886}
   - component: {fileID: 4602774571528803885}
   - component: {fileID: 4365548457051798872}
+  - component: {fileID: 1875782164335490201}
   m_Layer: 0
   m_Name: EnergyBall
   m_TagString: Untagged
@@ -123,3 +124,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1875782164335490201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4602774571528803884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37e31a06115d7c45a71b255e0d24c3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 2.5
