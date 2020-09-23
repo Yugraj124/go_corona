@@ -1,2 +1,2 @@
 # go_corona
-A game
+A game to make the corona go away
