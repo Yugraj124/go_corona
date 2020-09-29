@@ -21,8 +21,6 @@ public class Shooter : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GameObject energyBall = Instantiate(energyBallPrefab, gunTip.position,Quaternion.identity);
-
-            energyBall.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
             
             Vector3 playerAngle = transform.eulerAngles;
             energyBall.transform.eulerAngles = playerAngle;
