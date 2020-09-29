@@ -8,6 +8,7 @@ public class Virus : MonoBehaviour
     public Transform target;
     public float speed = 5f;
     public float rotateSpeed = 200f;
+    public GameObject Vaccine;
 
     private Rigidbody2D rb;
     // Start is called before the first frame update
@@ -32,11 +33,14 @@ public class Virus : MonoBehaviour
             rb.velocity = transform.up * speed;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Player")
+        if (collision.transform.tag == "Bullet")
         {
             Destroy(collision.gameObject);
+            int rnd = Random.Range(1, 5);
+            if (rnd == 1)
+                Instantiate(Vaccine, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
