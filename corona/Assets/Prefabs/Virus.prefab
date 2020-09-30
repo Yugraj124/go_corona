@@ -100,6 +100,7 @@ MonoBehaviour:
   speed: 2.6
   rotateSpeed: 300
   Vaccine: {fileID: 2058718911369738001, guid: e16eae523d8affe4e91a76e0cab62355, type: 3}
+  vaccineDropProb: 0.25
 --- !u!50 &207946866278131757
 Rigidbody2D:
   serializedVersion: 4

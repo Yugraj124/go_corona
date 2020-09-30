@@ -9,12 +9,16 @@ public class Virus : MonoBehaviour
     public float speed = 5f;
     public float rotateSpeed = 200f;
     public GameObject Vaccine;
+    [Range(0,1)]
+    public float vaccineDropProb = 0.2f;
+    public Score ScoreObject;
 
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        ScoreObject = FindObjectOfType<Score>();
     }
 
     // Update is called once per frame
@@ -38,9 +42,11 @@ public class Virus : MonoBehaviour
         if (collision.transform.tag == "Bullet")
         {
             Destroy(collision.gameObject);
-            int rnd = Random.Range(1, 5);
-            if (rnd == 1)
+            int rnd = Random.Range(1, 100);
+            if (rnd <= vaccineDropProb*100)
                 Instantiate(Vaccine, transform.position, Quaternion.identity);
+
+            ScoreObject.ScoreAdd();
             Destroy(gameObject);
         }
     }
