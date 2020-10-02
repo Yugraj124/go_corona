@@ -7,18 +7,23 @@ public class Shooter : MonoBehaviour
     public GameObject energyBallPrefab;
     public Transform gunTip;
 
+
+    public float shootCooldown = 0.3f;
     public float shootPower = 5.0f;
+
+    private float timeElapsed = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        timeElapsed = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        timeElapsed += Time.deltaTime;
+        if (Input.GetMouseButtonDown(0)&& timeElapsed>=shootCooldown)
         {
             GameObject energyBall = Instantiate(energyBallPrefab, gunTip.position,Quaternion.identity);
             
@@ -31,6 +36,7 @@ public class Shooter : MonoBehaviour
             float shootAngleDeg = transform.eulerAngles.z * Mathf.Deg2Rad;
             Vector2 shootAngle = new Vector2(Mathf.Cos(shootAngleDeg), Mathf.Sin(shootAngleDeg));
             energyBall.GetComponent<Rigidbody2D>().AddForce(shootAngle * shootPower, ForceMode2D.Impulse);
+            timeElapsed = 0;
         }
     }
 }

@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public GameObject virusPrefab;
     public Transform target;
-    public float spawnCooldown = 7f;
+    public float spawnCooldown = 5f;
 
     float timeElapsed = 0f;
 
@@ -15,7 +15,10 @@ public class Spawner : MonoBehaviour
     {
         timeElapsed = spawnCooldown;
     }
-
+    public void setCooldown(float val)
+    {
+        spawnCooldown = val;
+    }
     // Update is called once per frame
     void Update()
     {
