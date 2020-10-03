@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 3f;
+    public float speedDecrease = 0.2f;
+
     float x, y;
     Vector2 pos;
     Animator animator;

@@ -16,7 +16,7 @@ public class Score : MonoBehaviour
     public void ScoreAdd()
     {
         score += 1;
-        if (score > 0 && score % 5 == 0)
+        if (score > 0 && score%5 == 0)
         {
             gameManager.scoreChanged();
         }

@@ -19,7 +19,7 @@ public class Infection : MonoBehaviour
     {
         healthBar = FindObjectOfType<Healthbar>();
         healthBar.max= TimeToDie;
-        VaccineText.text = "0";
+        VaccineText.text = "x0";
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -38,24 +38,25 @@ public class Infection : MonoBehaviour
         {
             vaccineAmount++;
             vaccineAmount = Mathf.Clamp(vaccineAmount, 0, maxSpace);
-            VaccineText.text = vaccineAmount.ToString();
+            VaccineText.text = "x" + vaccineAmount.ToString();
             Destroy(collision.gameObject);
         }
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E)&&isInfected)
+        if(Input.GetKeyDown(KeyCode.E) && isInfected)
         {
             if (vaccineAmount > 0)
             {
                 vaccineAmount--;
                 vaccineAmount = Mathf.Clamp(vaccineAmount, 0, maxSpace);
-                VaccineText.text = vaccineAmount.ToString();
+                VaccineText.text = "x" + vaccineAmount.ToString();
                 isInfected = false;
             }
         }
-        if(isInfected)
+
+        if (gameObject && isInfected)
         {
             ElapsedTime += Time.deltaTime;
            
@@ -63,12 +64,17 @@ public class Infection : MonoBehaviour
             if (ElapsedTime > TimeToDie)
                 Destroy(gameObject);
 
+            GetComponent<Shooter>().shootCooldown = 0.3f + ElapsedTime * GetComponent<Shooter>().shootCooldownIncrease;
+            GetComponent<Mover>().speed = 3f - ElapsedTime * GetComponent<Mover>().speedDecrease;
         }
-        else if(ElapsedTime > 0)
+        else if (ElapsedTime > 0)
         {
             ElapsedTime -= Time.deltaTime * 2;
             ElapsedTime = (Mathf.Clamp(ElapsedTime, 0, TimeToDie));
             healthBar.SetValue(ElapsedTime);
+
+            GetComponent<Shooter>().shootCooldown = 0.3f + ElapsedTime * GetComponent<Shooter>().shootCooldownIncrease;
+            GetComponent<Mover>().speed = 3f - ElapsedTime * GetComponent<Mover>().speedDecrease;
         }
     }
 }
