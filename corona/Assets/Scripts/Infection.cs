@@ -14,12 +14,15 @@ public class Infection : MonoBehaviour
     private int vaccineAmount;
     private bool isInfected = false;
     private float ElapsedTime;
+    private SpriteRenderer color;
+    private int colorDec = 15;
 
     private void Awake()
     {
         healthBar = FindObjectOfType<Healthbar>();
         healthBar.max= TimeToDie;
         VaccineText.text = "x0";
+        color = GetComponent<SpriteRenderer>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -66,6 +69,7 @@ public class Infection : MonoBehaviour
 
             GetComponent<Shooter>().shootCooldown = 0.3f + ElapsedTime * GetComponent<Shooter>().shootCooldownIncrease;
             GetComponent<Mover>().speed = 3f - ElapsedTime * GetComponent<Mover>().speedDecrease;
+            color.color = new Color((250-ElapsedTime*colorDec)/255, 1, (250 - ElapsedTime * colorDec)/255, 1);
         }
         else if (ElapsedTime > 0)
         {
@@ -75,6 +79,7 @@ public class Infection : MonoBehaviour
 
             GetComponent<Shooter>().shootCooldown = 0.3f + ElapsedTime * GetComponent<Shooter>().shootCooldownIncrease;
             GetComponent<Mover>().speed = 3f - ElapsedTime * GetComponent<Mover>().speedDecrease;
+            color.color = new Color((250 - ElapsedTime * colorDec)/255, 1, (250 - ElapsedTime * colorDec)/255, 1);
         }
     }
 }
