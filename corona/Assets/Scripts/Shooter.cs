@@ -6,7 +6,9 @@ public class Shooter : MonoBehaviour
 {
     public GameObject energyBallPrefab;
     public Transform gunTip;
+    public AudioClip shootingSound;
 
+    AudioSource audioSource;
     public float shootCooldown = 0.3f;
     public float shootCooldownIncrease = 0.1f;
     public float shootPower = 5.0f;
@@ -17,6 +19,7 @@ public class Shooter : MonoBehaviour
     void Start()
     {
         timeElapsed = 0;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,6 +38,8 @@ public class Shooter : MonoBehaviour
             Vector2 shootAngle = new Vector2(Mathf.Cos(shootAngleDeg), Mathf.Sin(shootAngleDeg));
             energyBall.GetComponent<Rigidbody2D>().AddForce(shootAngle * shootPower, ForceMode2D.Impulse);
             timeElapsed = 0;
+
+            audioSource.PlayOneShot(shootingSound);
         }
     }
 }
