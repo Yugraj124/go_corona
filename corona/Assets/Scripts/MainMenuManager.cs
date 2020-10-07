@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class MainMenuManager : MonoBehaviour
 {
 	public Button QuitButton;
+    public Animator transition;
+    public float transitionTime = 1f;
 
     private void Awake()
     {
@@ -30,7 +32,16 @@ public class MainMenuManager : MonoBehaviour
 
 	public void loadScene(string sceneToLoad)
     {
-        SceneManager.LoadScene(sceneToLoad);
+        StartCoroutine(LoadLevel(sceneToLoad));
+    }
+
+    IEnumerator LoadLevel(string levelToLoad)
+    {
+        transition.SetTrigger("start");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(levelToLoad);
     }
 
     public void exitGame()

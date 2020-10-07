@@ -9,6 +9,8 @@ public class PauseMenuManager : MonoBehaviour
     public static bool GamePaused = false;
     public GameObject pauseMenu;
     public GameObject player;
+    public Animator transition;
+    public float transitionTime = 1f;
 
     private void Update()
     {
@@ -44,6 +46,16 @@ public class PauseMenuManager : MonoBehaviour
     public void loadScene(string sceneToLoad)
     {
         Resume();
-        SceneManager.LoadScene(sceneToLoad);
+        StartCoroutine(LoadLevel(sceneToLoad));
+    }
+
+
+    IEnumerator LoadLevel(string levelToLoad)
+    {
+        transition.SetTrigger("start");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(levelToLoad);
     }
 }

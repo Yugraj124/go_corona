@@ -9,6 +9,7 @@ public class Virus : MonoBehaviour
     public float speed = 5f;
     public float rotateSpeed = 200f;
     public GameObject Vaccine;
+    public GameObject deathEffect;
     [Range(0,1)]
     public float vaccineDropProb = 0.2f;
     public Score ScoreObject;
@@ -47,6 +48,7 @@ public class Virus : MonoBehaviour
                 Instantiate(Vaccine, transform.position, Quaternion.identity);
 
             ScoreObject.ScoreAdd();
+            Instantiate(deathEffect, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
