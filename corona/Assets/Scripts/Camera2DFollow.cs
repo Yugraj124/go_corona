@@ -18,7 +18,10 @@ namespace UnityStandardAssets._2D
         // Update is called once per frame
 		private void Update()
         {
-            transform.position = target.transform.position + offset;
+            if (target != null)
+            {
+                transform.position = target.transform.position + offset;
+            }
         }
     }
 }

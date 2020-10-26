@@ -6,16 +6,36 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public GameObject instructions;
+    public GameObject mainMenu;
 	public Button QuitButton;
     public Animator transition;
     public float transitionTime = 1f;
+
+    bool onInstructions = false;
 
     private void Awake()
     {
 		displayExitButton();
     }
 
-	void displayExitButton()
+    public void toggleInstructions()
+    {
+        if (!onInstructions)
+        {
+            mainMenu.SetActive(false);
+            instructions.SetActive(true);
+            onInstructions = true;
+        }
+        else
+        {
+            instructions.SetActive(false);
+            mainMenu.SetActive(true);
+            onInstructions = false;
+        }
+    }
+
+    void displayExitButton()
 	{
 		switch (Application.platform)
 		{

@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour
     {
         timeElapsed += Time.deltaTime;
         
-        if (timeElapsed > spawnCooldown)
+        if (target && timeElapsed > spawnCooldown)
         {
             timeElapsed = 0;
             int side = Random.Range(1, 5);
